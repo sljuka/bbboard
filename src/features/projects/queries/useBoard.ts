@@ -3,6 +3,10 @@ import { reorderList } from "@/lib/reorder";
 import { DropResult } from "@hello-pangea/dnd";
 import React from "react";
 import { Board, Column } from "@/services/types";
+import {
+  addColumn as addColumnService,
+  deleteColumn as deleteColumnService,
+} from "@/services/board";
 
 export const useBoard = (boardId: string) => {
   const [state, setState] = React.useState<Board | undefined>(
@@ -92,8 +96,20 @@ export const useBoard = (boardId: string) => {
     setState(newState);
   };
 
+  const addColumn = (name: string) => {
+    const board = addColumnService(boardId, name);
+    setState(board);
+  };
+
+  const deleteColumn = (columnId: string) => {
+    const board = deleteColumnService(boardId, columnId);
+    setState(board);
+  };
+
   return {
     onDragEnd,
+    addColumn,
+    deleteColumn,
     board: state,
   };
 };

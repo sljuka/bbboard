@@ -82,12 +82,12 @@ export const addColumn = (boardId: string, name: string) => {
     ...board,
     columns: {
       ...board.columns,
-      newColumn,
+      [newColumn.id]: newColumn,
     },
     columnOrder: [...board.columnOrder, newId],
   };
 
-  storage.saveBoard(updatedBoard);
+  return storage.saveBoard(updatedBoard);
 };
 
 export const updateColumnName = (
@@ -98,6 +98,6 @@ export const updateColumnName = (
   return storage.updateColumn(boardId, columnId, name);
 };
 
-// export const deleteColumn = (boardId: string, columnId: string) => {
-//   return storage.deleteColumn(boardId, columnId);
-// };
+export const deleteColumn = (boardId: string, columnId: string) => {
+  return storage.deleteColumn(boardId, columnId);
+};

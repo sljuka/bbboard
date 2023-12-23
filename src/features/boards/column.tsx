@@ -7,9 +7,10 @@ import { ColumnDropdownMenu } from "./columnDropdown";
 type Props = {
   column: ColumnType;
   index: number;
+  onDelete: () => void;
 };
 
-export const Column = React.memo(({ column, index }: Props) => {
+export const Column = React.memo(({ column, index, onDelete }: Props) => {
   return (
     <Draggable draggableId={column.id} index={index}>
       {(provided) => (
@@ -23,7 +24,10 @@ export const Column = React.memo(({ column, index }: Props) => {
             {...provided.dragHandleProps}
           >
             {column.name}
-            <ColumnDropdownMenu />
+            <ColumnDropdownMenu
+              deleteDisabled={column.cardOrder.length > 0}
+              onDelete={onDelete}
+            />
           </h3>
           <ItemList column={column} index={index} />
         </div>

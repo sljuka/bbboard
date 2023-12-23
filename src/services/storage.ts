@@ -40,20 +40,20 @@ export const updateColumn = async (
   return saveBoard(board);
 };
 
-// export const deleteColumn = async (boardId: string, columnId: string) => {
-//   const board = await getBoard(boardId);
+export const deleteColumn = (boardId: string, columnId: string) => {
+  const board = getBoard(boardId);
 
-//   if (!board) return;
+  if (!board) return;
 
-//   const column = board.columns[columnId];
+  const column = board.columns[columnId];
 
-//   if (!column || column.cardOrder.length > 0) return;
+  if (!column || column.cardOrder.length > 0) return;
 
-//   delete board.columns[columnId];
-//   board.columnOrder = board.columnOrder.filter((x) => x !== columnId);
+  delete board.columns[columnId];
+  board.columnOrder = board.columnOrder.filter((x) => x !== columnId);
 
-//   return saveBoard(board);
-// };
+  return saveBoard(board);
+};
 
 // export const moveColumn = async (
 //   boardId: string,
