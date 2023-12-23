@@ -3,12 +3,10 @@ import { Droppable } from "@hello-pangea/dnd";
 import { FixedSizeList } from "react-window";
 import { Item } from "./item";
 import { Row } from "./row";
+import { Column as ColumnType } from "@/services/types";
 
 type Props = {
-  column: {
-    id: string;
-    items: { text: string; id: string }[];
-  };
+  column: ColumnType;
   index: number;
 };
 
@@ -34,7 +32,7 @@ export const ItemList = React.memo(({ column, index }: Props) => {
         <Item
           provided={provided}
           isDragging={snapshot.isDragging}
-          item={column.items[rubric.source.index]}
+          item={column.cards[column.cardOrder[rubric.source.index]]}
         />
       )}
     >
@@ -43,8 +41,8 @@ export const ItemList = React.memo(({ column, index }: Props) => {
         // Usually the DroppableProvided.placeholder does this, but that won't
         // work in a virtual list
         const itemCount = snapshot.isUsingPlaceholder
-          ? column.items.length + 1
-          : column.items.length;
+          ? column.cardOrder.length + 1
+          : column.cardOrder.length;
 
         return (
           <FixedSizeList
@@ -53,7 +51,7 @@ export const ItemList = React.memo(({ column, index }: Props) => {
             itemSize={80}
             width={300}
             outerRef={provided.innerRef}
-            itemData={column.items}
+            itemData={column.cardOrder.map((x) => column.cards[x])}
             className="task-list"
             ref={listRef}
           >

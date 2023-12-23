@@ -1,13 +1,11 @@
 import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
 import { ItemList } from "./itemList";
+import { Column as ColumnType } from "@/services/types";
+import { ColumnDropdownMenu } from "./columnDropdown";
 
 type Props = {
-  column: {
-    id: string;
-    items: { text: string; id: string }[];
-    title: string;
-  };
+  column: ColumnType;
   index: number;
 };
 
@@ -21,10 +19,11 @@ export const Column = React.memo(({ column, index }: Props) => {
           ref={provided.innerRef}
         >
           <h3
-            className="text-lg font-medium p-2 hover:text-gray-700"
+            className=" flex justify-between items-center text-lg font-medium p-2 hover:text-gray-700"
             {...provided.dragHandleProps}
           >
-            {column.title}
+            {column.name}
+            <ColumnDropdownMenu />
           </h3>
           <ItemList column={column} index={index} />
         </div>

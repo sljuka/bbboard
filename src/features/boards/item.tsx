@@ -1,3 +1,4 @@
+import { Card } from "@/services/types";
 import {
   DraggableProvided,
   DraggableProvidedDraggableProps,
@@ -6,7 +7,7 @@ import {
 
 type ItemProps = {
   provided: DraggableProvided;
-  item: { text: string; id: string };
+  item: Card;
   style?: React.CSSProperties;
   isDragging?: boolean;
 };
@@ -22,11 +23,11 @@ export const Item = ({ provided, item, style, isDragging }: ItemProps) => {
         virtualStyle: style,
         isDragging,
       })}
-      className={`item select-none flex justify-center items-center border bg-white rounded-md ${
+      className={`item select-none flex justify-center items-center border bg-white rounded-md box-border ${
         isDragging ? "is-dragging" : ""
       }`}
     >
-      {item.text}
+      {item.name}
     </div>
   );
 };

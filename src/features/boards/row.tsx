@@ -2,9 +2,10 @@ import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
 import { areEqual } from "react-window";
 import { Item } from "./item";
+import { Card } from "@/services/types";
 
 type RowProps = {
-  data: { id: string; text: string }[];
+  data: Card[];
   index: number;
   style: React.CSSProperties;
 };
