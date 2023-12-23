@@ -22,7 +22,9 @@ export const Item = ({ provided, item, style, isDragging }: ItemProps) => {
         virtualStyle: style,
         isDragging,
       })}
-      className={`item ${isDragging ? "is-dragging" : ""}`}
+      className={`item select-none flex justify-center items-center border bg-white rounded-md ${
+        isDragging ? "is-dragging" : ""
+      }`}
     >
       {item.text}
     </div>

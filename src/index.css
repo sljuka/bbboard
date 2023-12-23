@@ -33,6 +33,14 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --grid: 8px;
+    --pink: #fd3afd;
+    --pinkDark: #690169;
+    --greyLight: #515b7d;
+    --black: #1d212e;
+    --borderWidth: 4px;
+    --borderRadius: 8px;
   }
 
   .dark {
@@ -74,3 +82,7 @@
     @apply bg-background text-foreground;
   }
 } */
+
+body {
+  user-select: none;
+}

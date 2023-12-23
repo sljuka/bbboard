@@ -1,9 +1,9 @@
 import React from "react";
 import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd";
-import "../board.css";
 import { Data, initialData } from "./getInitialData";
 import { reorderList } from "./reorder";
 import { Column } from "./column";
+import "../board.css";
 
 export const Board = () => {
   const [state, setState] = React.useState<Data>(initialData);
@@ -87,7 +87,7 @@ export const Board = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="app">
+      <div className="select-none flex flex-col items-center">
         <Droppable
           droppableId="all-droppables"
           direction="horizontal"
@@ -95,7 +95,7 @@ export const Board = () => {
         >
           {(provided) => (
             <div
-              className="columns"
+              className="flex"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >

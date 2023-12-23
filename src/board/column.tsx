@@ -16,11 +16,14 @@ export const Column = React.memo(({ column, index }: Props) => {
     <Draggable draggableId={column.id} index={index}>
       {(provided) => (
         <div
-          className="column"
+          className="column border border-solid rounded-md bg-slate-100"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
-          <h3 className="column-title" {...provided.dragHandleProps}>
+          <h3
+            className="text-lg font-medium p-2 hover:text-gray-700"
+            {...provided.dragHandleProps}
+          >
             {column.title}
           </h3>
           <ItemList column={column} index={index} />
