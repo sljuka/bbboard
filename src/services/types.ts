@@ -1,7 +1,7 @@
 export type Card = {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   createdDate: number;
   status: "open" | "close";
   archived?: boolean;

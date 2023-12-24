@@ -4,17 +4,20 @@ import { ItemList } from "./itemList";
 import { Column as ColumnType } from "@/services/types";
 import { ColumnDropdownMenu } from "./columnDropdown";
 import { EditColumnDialog } from "./editColumnDialog";
+import { NewCardDialog } from "./newCardDialog";
 
 type Props = {
   column: ColumnType;
   index: number;
   onDelete: () => void;
   onEdit: (newName: string) => void;
+  onAddCard: (name: string, description?: string) => void;
 };
 
 export const Column = React.memo(
-  ({ column, index, onDelete, onEdit }: Props) => {
-    const [open, setOpen] = React.useState(false);
+  ({ column, index, onDelete, onEdit, onAddCard }: Props) => {
+    const [openEditDialog, setOpenEditDialog] = React.useState(false);
+    const [openAddCardDialog, setOpenAddCardDialog] = React.useState(false);
 
     return (
       <>
@@ -33,7 +36,8 @@ export const Column = React.memo(
                 <ColumnDropdownMenu
                   deleteDisabled={column.cardOrder.length > 0}
                   onDelete={onDelete}
-                  onEdit={() => setOpen(true)}
+                  onEdit={() => setOpenEditDialog(true)}
+                  onAddCard={() => setOpenAddCardDialog(true)}
                 />
               </h3>
               <ItemList column={column} index={index} />
@@ -41,10 +45,15 @@ export const Column = React.memo(
           )}
         </Draggable>
         <EditColumnDialog
-          open={open}
-          onOpenChange={setOpen}
+          open={openEditDialog}
+          onOpenChange={setOpenEditDialog}
           name={column.name}
           onSubmit={onEdit}
+        />
+        <NewCardDialog
+          open={openAddCardDialog}
+          onOpenChange={setOpenAddCardDialog}
+          onSubmit={onAddCard}
         />
       </>
     );

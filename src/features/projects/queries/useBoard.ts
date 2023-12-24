@@ -5,6 +5,7 @@ import React from "react";
 import { Board, Column } from "@/services/types";
 import {
   addColumn as addColumnService,
+  addCard as addCardService,
   deleteColumn as deleteColumnService,
   updateColumnName,
 } from "@/services/board";
@@ -112,11 +113,17 @@ export const useBoard = (boardId: string) => {
     setState(board);
   };
 
+  const addCard = (columnId: string, name: string, description?: string) => {
+    const board = addCardService(boardId, columnId, name, description);
+    setState(board);
+  };
+
   return {
     onDragEnd,
     addColumn,
     deleteColumn,
     editColumn,
+    addCard,
     board: state,
   };
 };

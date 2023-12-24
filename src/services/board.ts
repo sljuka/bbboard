@@ -1,6 +1,6 @@
 import { createRange } from "@/lib/range";
 import * as storage from "./storage";
-import { Board, Column } from "./types";
+import { Board, Card, Column } from "./types";
 
 const getInitialData = (count: number, useInitialData?: boolean) => {
   if (!useInitialData) {
@@ -8,10 +8,10 @@ const getInitialData = (count: number, useInitialData?: boolean) => {
   }
 
   const cardArray = createRange(count).map((i) => {
-    const id = crypto.randomUUID();
+    const id = crypto.randomUUID().slice(16);
 
     return {
-      id: `id:${id}`,
+      id,
       name: `card ${i}`,
       status: "open",
       createdDate: new Date().getTime(),
@@ -58,10 +58,9 @@ const getDefaultColumns = (useInitialData?: boolean) => {
 type Args = { name: string; author: string; useInitialData?: boolean };
 
 export const createBoard = ({ name, author, useInitialData }: Args) => {
-  console.log("AAAA", name, useInitialData);
   const newBoard: Board = {
     name,
-    id: storage.getBoardKey(crypto.randomUUID()),
+    id: crypto.randomUUID().slice(16),
     author,
     ...getDefaultColumns(useInitialData),
   };
@@ -69,8 +68,9 @@ export const createBoard = ({ name, author, useInitialData }: Args) => {
   return storage.saveBoard(newBoard);
 };
 
+// simulate async request
 export const createBoardAsync = (args: Args) =>
-  new Promise<Board>((r) => setTimeout(() => r(createBoard(args)), 2000));
+  new Promise<Board>((r) => setTimeout(() => r(createBoard(args)), 1000));
 
 export const getBoards = storage.getBoards;
 
@@ -103,8 +103,59 @@ export const updateColumnName = (
   boardId: string,
   columnId: string,
   name: string
-) => storage.updateColumn(boardId, columnId, name);
+) => {
+  const board = storage.getBoard(boardId);
+
+  if (!board) return;
+
+  const column = board.columns[columnId];
+
+  if (!column) return;
+
+  column.name = name;
+
+  return storage.saveBoard(board);
+};
 
 export const deleteColumn = (boardId: string, columnId: string) => {
-  return storage.deleteColumn(boardId, columnId);
+  const board = storage.getBoard(boardId);
+
+  if (!board) return;
+
+  const column = board.columns[columnId];
+
+  if (!column || column.cardOrder.length > 0) return;
+
+  delete board.columns[columnId];
+  board.columnOrder = board.columnOrder.filter((x) => x !== columnId);
+
+  return storage.saveBoard(board);
+};
+
+export const addCard = (
+  boardId: string,
+  columnId: string,
+  name: string,
+  description?: string
+) => {
+  const board = storage.getBoard(boardId);
+
+  if (!board) return;
+
+  const column = board.columns[columnId];
+
+  if (!column) return;
+
+  const newCard: Card = {
+    id: crypto.randomUUID().slice(16),
+    createdDate: new Date().getTime(),
+    name,
+    description,
+    status: "open",
+  };
+
+  board.columns[columnId].cardOrder.unshift(newCard.id);
+  board.columns[columnId].cards[newCard.id] = newCard;
+
+  return storage.saveBoard(board);
 };

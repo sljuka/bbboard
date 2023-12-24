@@ -12,23 +12,25 @@ type Props = {
   deleteDisabled: boolean;
   onDelete: () => void;
   onEdit: () => void;
+  onAddCard: () => void;
 };
 
 export function ColumnDropdownMenu({
   deleteDisabled,
   onDelete,
   onEdit,
+  onAddCard,
 }: Props) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-500">
           <MoreHorizontal />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={onAddCard}>
             <Plus className="mr-2 h-4 w-4" />
             <span>Add card</span>
           </DropdownMenuItem>

@@ -1,9 +1,9 @@
 import { Board } from "./types";
 
-export const getBoardKey = (id: string) => `bbboard-${id}`;
+const getBoardKey = (id: string) => `bbboard-${id}`;
 
 export const saveBoard = (board: Board) => {
-  localStorage.setItem(board.id, JSON.stringify(board));
+  localStorage.setItem(getBoardKey(board.id), JSON.stringify(board));
 
   return board;
 };
@@ -11,48 +11,15 @@ export const saveBoard = (board: Board) => {
 export const getBoards = () => {
   return Object.keys(localStorage)
     .filter((x) => x.startsWith("bbboard-"))
-    .map((x) => getBoard(x));
+    .map((x) => getBoard(x.slice(8)));
 };
 
 export const getBoard = (boardId: string): Board | undefined => {
-  const boardData = localStorage.getItem(boardId);
+  const boardData = localStorage.getItem(getBoardKey(boardId));
 
   if (!boardData) return;
 
   return JSON.parse(boardData);
-};
-
-export const updateColumn = (
-  boardId: string,
-  columnId: string,
-  name: string
-) => {
-  const board = getBoard(boardId);
-
-  if (!board) return;
-
-  const column = board.columns[columnId];
-
-  if (!column) return;
-
-  column.name = name;
-
-  return saveBoard(board);
-};
-
-export const deleteColumn = (boardId: string, columnId: string) => {
-  const board = getBoard(boardId);
-
-  if (!board) return;
-
-  const column = board.columns[columnId];
-
-  if (!column || column.cardOrder.length > 0) return;
-
-  delete board.columns[columnId];
-  board.columnOrder = board.columnOrder.filter((x) => x !== columnId);
-
-  return saveBoard(board);
 };
 
 // export const moveColumn = async (
