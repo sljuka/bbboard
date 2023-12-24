@@ -23,11 +23,16 @@ export const Item = ({ provided, item, style, isDragging }: ItemProps) => {
         virtualStyle: style,
         isDragging,
       })}
-      className={`item select-none flex justify-center items-center border bg-white rounded-md box-border ${
+      className={`item select-none flex flex-col gap-2 overflow-hidden p-2 border bg-white rounded-md box-border ${
         isDragging ? "is-dragging" : ""
       }`}
     >
-      {item.name}
+      <h3 className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
+        {item.name}
+      </h3>
+      <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
+        {item.description}
+      </p>
     </div>
   );
 };

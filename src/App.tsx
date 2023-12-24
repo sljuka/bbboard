@@ -23,7 +23,7 @@ export default function App() {
                 "list-none text-xl hover:no-underline"
               )}
             >
-              Welcome to Boards!
+              BBBoards!
             </Link>
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
