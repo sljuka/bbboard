@@ -6,6 +6,7 @@ import { Board, Column } from "@/services/types";
 import {
   addColumn as addColumnService,
   deleteColumn as deleteColumnService,
+  updateColumnName,
 } from "@/services/board";
 
 export const useBoard = (boardId: string) => {
@@ -106,10 +107,16 @@ export const useBoard = (boardId: string) => {
     setState(board);
   };
 
+  const editColumn = (columnId: string, newName: string) => {
+    const board = updateColumnName(boardId, columnId, newName);
+    setState(board);
+  };
+
   return {
     onDragEnd,
     addColumn,
     deleteColumn,
+    editColumn,
     board: state,
   };
 };

@@ -94,9 +94,7 @@ export const updateColumnName = (
   boardId: string,
   columnId: string,
   name: string
-) => {
-  return storage.updateColumn(boardId, columnId, name);
-};
+) => storage.updateColumn(boardId, columnId, name);
 
 export const deleteColumn = (boardId: string, columnId: string) => {
   return storage.deleteColumn(boardId, columnId);

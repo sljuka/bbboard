@@ -9,7 +9,8 @@ type Props = {
 };
 
 export const Board = ({ boardId }: Props) => {
-  const { onDragEnd, board, addColumn, deleteColumn } = useBoard(boardId);
+  const { onDragEnd, board, addColumn, deleteColumn, editColumn } =
+    useBoard(boardId);
 
   if (!board) return;
 
@@ -33,6 +34,7 @@ export const Board = ({ boardId }: Props) => {
                   column={board.columns[columnId]}
                   index={index}
                   onDelete={() => deleteColumn(columnId)}
+                  onEdit={(newName: string) => editColumn(columnId, newName)}
                 />
               ))}
               {provided.placeholder}

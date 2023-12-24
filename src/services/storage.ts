@@ -22,7 +22,7 @@ export const getBoard = (boardId: string): Board | undefined => {
   return JSON.parse(boardData);
 };
 
-export const updateColumn = async (
+export const updateColumn = (
   boardId: string,
   columnId: string,
   name: string
