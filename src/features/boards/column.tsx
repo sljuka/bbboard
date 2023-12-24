@@ -34,7 +34,7 @@ export const Column = React.memo(
               >
                 {column.name}
                 <ColumnDropdownMenu
-                  deleteDisabled={column.cardOrder.length > 0}
+                  deleteDisabled={Object.keys(column.cards).length > 0}
                   onDelete={onDelete}
                   onEdit={() => setOpenEditDialog(true)}
                   onAddCard={() => setOpenAddCardDialog(true)}

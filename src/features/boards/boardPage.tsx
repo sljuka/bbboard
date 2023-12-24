@@ -10,11 +10,6 @@ const BoardPage = () => {
   return (
     <Page>
       <Board boardId={boardId} />
-      {/* <DragOverlay>
-        {activeId ? (
-          <div style={{ backgroundColor: "pink" }}>Hiii {activeId}</div>
-        ) : null}
-      </DragOverlay> */}
     </Page>
   );
 };

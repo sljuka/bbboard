@@ -1,7 +1,6 @@
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { Column } from "./column";
-import "../../board.css";
-import { useBoard } from "../projects/queries/useBoard";
+import { useBoard } from "./queries/useBoard";
 import { NewColumnDialog } from "./newColumnDialog";
 
 type Props = {

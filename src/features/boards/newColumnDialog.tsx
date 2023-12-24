@@ -16,6 +16,7 @@ type Props = { onSubmit: (name: string) => void };
 
 export const NewColumnDialog = ({ onSubmit }: Props) => {
   const [open, setOpen] = React.useState(false);
+  const [error, setError] = React.useState<string | undefined>();
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>
@@ -30,7 +31,10 @@ export const NewColumnDialog = ({ onSubmit }: Props) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const name = formData.get("name")?.toString();
-            if (!name) return;
+            if (!name) {
+              setError("Name is required");
+              return;
+            }
 
             onSubmit(name);
             setOpen(false);
@@ -47,9 +51,15 @@ export const NewColumnDialog = ({ onSubmit }: Props) => {
                 name="name"
                 className="col-span-3"
                 placeholder="Column name"
+                onChange={() => setError("")}
               />
             </div>
           </div>
+          {error && (
+            <Label htmlFor="name" className="text-red-500">
+              {error}
+            </Label>
+          )}
           <DialogFooter>
             <Button type="submit">Save</Button>
           </DialogFooter>

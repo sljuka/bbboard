@@ -27,10 +27,10 @@ export const ProjectList = () => {
   }
 
   return (
-    <div>
-      <h2 className="pb-4">Boards:</h2>
+    <div className="flex gap-4 items-center">
+      <h2>Boards:</h2>
 
-      <ul className="flex flex-col gap-4">
+      <ul className="flex gap-4">
         {data?.map((board) => (
           <li key={board.id} className="list-none p-0 m-0">
             <Link

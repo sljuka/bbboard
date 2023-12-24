@@ -74,6 +74,10 @@ export const createBoardAsync = (args: Args) =>
 
 export const getBoards = storage.getBoards;
 
+// simulate async request
+export const getBoardsAsync = () =>
+  new Promise<Board[]>((r) => setTimeout(() => r(getBoards()), 500));
+
 export const addColumn = (boardId: string, name: string) => {
   const board = storage.getBoard(boardId);
 
@@ -156,6 +160,39 @@ export const addCard = (
 
   board.columns[columnId].cardOrder.unshift(newCard.id);
   board.columns[columnId].cards[newCard.id] = newCard;
+
+  return storage.saveBoard(board);
+};
+
+export type CardUpdatableDetails = Omit<Card, "id" | "createdDate">;
+
+export const updateCard = (
+  boardId: string,
+  columnId: string,
+  cardId: string,
+  cardUpdates: CardUpdatableDetails
+) => {
+  const board = storage.getBoard(boardId);
+
+  if (!board) return;
+
+  const column = board.columns[columnId];
+
+  if (!column) return;
+
+  const columnIncludesCard = column.cardOrder.includes(cardId);
+
+  // remove or add from cards if archive value changed
+  if (cardUpdates.archived && columnIncludesCard) {
+    column.cardOrder = column.cardOrder.filter((x) => x !== cardId);
+  } else if (!cardUpdates.archived && !columnIncludesCard) {
+    column.cardOrder.unshift(cardId);
+  }
+
+  column.cards[cardId] = {
+    ...column.cards[cardId],
+    ...cardUpdates,
+  };
 
   return storage.saveBoard(board);
 };

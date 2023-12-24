@@ -42,7 +42,7 @@ export default function App() {
           }
         />
         <Route
-          path="/card"
+          path="/board/:boardId/card/:cardId"
           element={
             <React.Suspense fallback={<>Loading...</>}>
               <CardPage />

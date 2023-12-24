@@ -11,7 +11,8 @@ export const saveBoard = (board: Board) => {
 export const getBoards = () => {
   return Object.keys(localStorage)
     .filter((x) => x.startsWith("bbboard-"))
-    .map((x) => getBoard(x.slice(8)));
+    .map((x) => getBoard(x.slice(8)))
+    .filter(Boolean) as Board[];
 };
 
 export const getBoard = (boardId: string): Board | undefined => {

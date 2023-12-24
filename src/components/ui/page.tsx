@@ -3,5 +3,5 @@ type Props = {
 };
 
 export const Page = ({ children }: Props) => (
-  <div className="p-4 flex flex-col gap-4 items-start flex-1">{children}</div>
+  <div className="p-4 gap-4 flex-1">{children}</div>
 );

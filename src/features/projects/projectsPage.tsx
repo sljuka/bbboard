@@ -4,8 +4,12 @@ import { NewBoardDialog } from "./newBoardDialog";
 
 const ProjectsPage = () => (
   <Page>
-    <NewBoardDialog />
-    <ProjectList />
+    <div className="flex flex-col gap-4">
+      <div>
+        <NewBoardDialog />
+      </div>
+      <ProjectList />
+    </div>
   </Page>
 );
 
