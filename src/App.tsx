@@ -5,6 +5,7 @@ import { Layout } from "./components/ui/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 import clsx from "clsx";
 import { buttonVariants } from "./components/ui/button";
+import { NoMatch } from "./noMatch";
 
 const CardPage = React.lazy(() => import("@/features/boards/cardPage"));
 const BoardPage = React.lazy(() => import("@/features/boards/boardPage"));
@@ -52,16 +53,5 @@ export default function App() {
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
-  );
-}
-
-function NoMatch() {
-  return (
-    <div>
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/">Go to the home page</Link>
-      </p>
-    </div>
   );
 }

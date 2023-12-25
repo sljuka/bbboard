@@ -2,6 +2,7 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { Column } from "./column";
 import { useBoard } from "./queries/useBoard";
 import { NewColumnDialog } from "./newColumnDialog";
+import { NoMatch } from "@/noMatch";
 
 type Props = {
   boardId: string;
@@ -11,7 +12,7 @@ export const Board = ({ boardId }: Props) => {
   const { onDragEnd, board, addColumn, deleteColumn, editColumn, addCard } =
     useBoard(boardId);
 
-  if (!board) return;
+  if (!board) return <NoMatch />;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

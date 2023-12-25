@@ -1,11 +1,12 @@
 import { Page } from "@/components/ui/page";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CardDetails } from "./cardDetails";
+import { NoMatch } from "@/noMatch";
 
 const CardPage = () => {
   const { boardId, cardId } = useParams();
 
-  if (!boardId || !cardId) return <Navigate to="/" replace />;
+  if (!boardId || !cardId) return <NoMatch />;
 
   return (
     <Page>

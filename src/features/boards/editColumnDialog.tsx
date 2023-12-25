@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import React from "react";
 
 type Props = {
   onSubmit: (name: string) => void;
@@ -22,6 +23,8 @@ export const EditColumnDialog = ({
   open,
   onOpenChange,
 }: Props) => {
+  const [error, setError] = React.useState<string | undefined>();
+
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="sm:max-w-[425px]">
@@ -30,7 +33,10 @@ export const EditColumnDialog = ({
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const name = formData.get("name")?.toString();
-            if (!name) return;
+            if (!name) {
+              setError("Name is required");
+              return;
+            }
 
             onSubmit(name);
             onOpenChange(false);
@@ -48,9 +54,15 @@ export const EditColumnDialog = ({
                 defaultValue={name}
                 className="col-span-3"
                 placeholder="Column name"
+                onChange={() => setError(undefined)}
               />
             </div>
           </div>
+          {error && (
+            <Label htmlFor="name" className="text-red-500">
+              {error}
+            </Label>
+          )}
           <DialogFooter>
             <Button type="submit">Save</Button>
           </DialogFooter>

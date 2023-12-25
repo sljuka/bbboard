@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCard } from "./queries/useCard";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import React from "react";
 import clsx from "clsx";
+import { NoMatch } from "@/noMatch";
 
 type Props = {
   cardId: string;
@@ -20,7 +21,7 @@ export const CardDetails = ({ cardId, boardId }: Props) => {
 
   const [error, setError] = React.useState<string | undefined>();
 
-  if (!cardDetails || !cardDetails.card) return <Navigate to="/" replace />;
+  if (!cardDetails || !cardDetails.card) return <NoMatch />;
 
   const card = cardDetails.card;
 
