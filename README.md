@@ -32,10 +32,10 @@ npm run dev
 npm run cypress:open
 ```
 
-- select E2E Testing in the Cypress App
+- Select E2E Testing in the Cypress App
 - Select Chrome (perhaps other browsers work as well)
 - Click Start E2E Testing in Chrome
-- click on bbboard.cy.js to run the e2e test
+- Click on bbboard.cy.js to run the e2e test
 
 Run e2e test from command line:
 
