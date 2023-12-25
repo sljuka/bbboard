@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open",
+    "test": "cypress run"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^16.5.0",

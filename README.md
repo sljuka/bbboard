@@ -1,3 +1,49 @@
+# BBBoards
+
+A simple kanban board app built with React, TypeScript, and Vite.
+
+## Running the app
+
+```bash
+npm install # install deps
+npm run dev
+```
+
+## Features
+
+- List boards
+- Create board
+- Add column
+- Move column (DnD)
+- Delete empty column
+- Create card
+- Move card (DnD)
+- Open card
+- Update card details (name, description, status, archive)
+
+Board data is stored in individual local storage entries. Cards in column are shown within a virtual list (react-window).
+
+## e2e Testing
+
+Run development server and open Cypress App:
+
+```bash
+npm run dev
+npm run cypress:open
+```
+
+- select E2E Testing in the Cypress App
+- Select Chrome (perhaps other browsers work as well)
+- Click Start E2E Testing in Chrome
+- click on bbboard.cy.js to run the e2e test
+
+Run e2e test from command line:
+
+```bash
+npm run dev
+npm run test
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -17,12 +63,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
