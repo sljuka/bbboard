@@ -24,13 +24,17 @@ export function ColumnDropdownMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-500">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="column-dropdown h-8 w-8 text-gray-500"
+        >
           <MoreHorizontal />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={onAddCard}>
+          <DropdownMenuItem onClick={onAddCard} className="add-card-option">
             <Plus className="mr-2 h-4 w-4" />
             <span>Add card</span>
           </DropdownMenuItem>

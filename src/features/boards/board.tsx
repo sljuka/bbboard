@@ -15,6 +15,7 @@ export const Board = ({ boardId }: Props) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <h2 className="font-medium text-xl pb-4 pl-4">{board.name}</h2>
       <div className="select-none flex items-center">
         <Droppable
           droppableId="all-droppables"

@@ -26,7 +26,7 @@ export const NewCardDialog = ({ onSubmit, open, onOpenChange }: Props) => {
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
-            const name = formData.get("name")?.toString();
+            const name = formData.get("card-name")?.toString();
             const description = formData.get("description")?.toString();
             if (!name) {
               setError("Name is required");
@@ -42,17 +42,17 @@ export const NewCardDialog = ({ onSubmit, open, onOpenChange }: Props) => {
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="card-name">Name</Label>
               <Input
-                id="name"
-                name="name"
+                id="card-name"
+                name="card-name"
                 className="col-span-3"
-                placeholder="Column name"
+                placeholder="Card name"
                 onChange={() => setError(undefined)}
               />
             </div>
             {error && (
-              <Label htmlFor="name" className="text-red-500">
+              <Label htmlFor="card-name" className="text-red-500">
                 {error}
               </Label>
             )}

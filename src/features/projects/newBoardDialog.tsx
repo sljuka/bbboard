@@ -11,9 +11,11 @@ import {
 } from "@/components/ui/dialog";
 import { useSaveBoard } from "./queries/useSaveBoard";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 export const NewBoardDialog = () => {
   const { isLoading, mutate } = useSaveBoard();
+  const [error, setError] = useState<string | undefined>();
 
   return (
     <Dialog>
@@ -26,10 +28,13 @@ export const NewBoardDialog = () => {
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
-            const name = formData.get("name")?.toString();
+            const name = formData.get("board-name")?.toString();
             const useInitialData = formData.get("initialData") === "on";
 
-            if (!name) return;
+            if (!name) {
+              setError("Name is required");
+              return;
+            }
 
             mutate({ author: "test", name, useInitialData });
           }}
@@ -39,14 +44,20 @@ export const NewBoardDialog = () => {
           </DialogHeader>
 
           <div>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="board-name">Name</Label>
             <Input
-              id="name"
-              name="name"
+              id="board-name"
+              name="board-name"
               className="col-span-3"
               placeholder="Board name"
+              onChange={() => setError(undefined)}
             />
           </div>
+          {error && (
+            <Label htmlFor="board-name" className="text-red-500">
+              {error}
+            </Label>
+          )}
           <div className="flex items-center space-x-2">
             <Checkbox
               id="initialData"

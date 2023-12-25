@@ -34,9 +34,9 @@ export const Item = ({ provided, item, style, isDragging }: ItemProps) => {
         item.status === "close" && "opacity-55"
       )}
     >
-      <h3 className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
+      <h4 className="text-xs text-gray-500 overflow-hidden text-ellipsis whitespace-nowrap">
         {item.name}
-      </h3>
+      </h4>
       <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
         {item.description}
       </p>

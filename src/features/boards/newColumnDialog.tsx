@@ -51,7 +51,7 @@ export const NewColumnDialog = ({ onSubmit }: Props) => {
                 name="name"
                 className="col-span-3"
                 placeholder="Column name"
-                onChange={() => setError("")}
+                onChange={() => setError(undefined)}
               />
             </div>
           </div>
