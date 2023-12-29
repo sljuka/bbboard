@@ -32,7 +32,7 @@ npm run dev
 - PWA:
   - [x] Install button (can install on desktop and mobile. [Netlify deploy for testing](https://master--comforting-moonbeam-7b5be7.netlify.app/))
   - [x] Persistted data to local storage
-  - [ ] Push notification after creating card
+  - [x] Push notification after creating card (notification sent locally, not remote push notification)
 - Performance:
   - [x] Windowing using react-window for cards in column
   - [x] Code splitting (lazy loading react-router pages)
