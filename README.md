@@ -30,7 +30,7 @@ npm run dev
   - [ ] i18n
   - [ ] More fields
 - PWA:
-  - [x] Install button (can install on desktop and mobile. (Netlify deploy for testing)[https://master--comforting-moonbeam-7b5be7.netlify.app/)])
+  - [x] Install button (can install on desktop and mobile. [Netlify deploy for testing](https://master--comforting-moonbeam-7b5be7.netlify.app/))
   - [x] Persistted data to local storage
   - [ ] Push notification after creating card
 - Performance:
