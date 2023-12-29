@@ -114,7 +114,24 @@ export const useBoard = (boardId: string) => {
   };
 
   const addCard = (columnId: string, name: string, description?: string) => {
-    const board = addCardService(boardId, columnId, name, description);
+    const result = addCardService(boardId, columnId, name, description);
+
+    if (!result) return;
+
+    const { board, card } = result;
+
+    Notification.requestPermission().then((result) => {
+      if (result === "granted") {
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification("Card created!", {
+            body: `Name: ${card.name}`,
+            icon: "./pwa-192.png",
+            tag: "vibration-sample",
+          });
+        });
+      }
+    });
+
     setState(board);
   };
 

@@ -161,7 +161,9 @@ export const addCard = (
   board.columns[columnId].cardOrder.unshift(newCard.id);
   board.columns[columnId].cards[newCard.id] = newCard;
 
-  return storage.saveBoard(board);
+  const newBoardState = storage.saveBoard(board);
+
+  return { board: newBoardState, card: newCard };
 };
 
 export type CardUpdatableDetails = Omit<Card, "id" | "createdDate">;
