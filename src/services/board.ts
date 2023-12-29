@@ -76,7 +76,7 @@ export const getBoards = storage.getBoards;
 
 // simulate async request
 export const getBoardsAsync = () =>
-  new Promise<Board[]>((r) => setTimeout(() => r(getBoards()), 500));
+  new Promise<Board[]>((r) => setTimeout(() => r(getBoards()), 200));
 
 export const addColumn = (boardId: string, name: string) => {
   const board = storage.getBoard(boardId);
