@@ -11,15 +11,38 @@ npm run dev
 
 ## Features
 
-- List boards
-- Create board
-- Add column
-- Move column (DnD)
-- Delete empty column
-- Create card
-- Move card (DnD)
-- Open card
-- Update card details (name, description, status, archive)
+- Standard Board features:
+  - List/Create boards [x]
+  - Add column [x]
+  - Move column (DnD) [x]
+  - Rename column [x]
+  - Delete empty column [x]
+  - Create card [x]
+  - Move card (DnD)
+  - Open card
+  - Update card details (name, description, status, archive)
+- Testing:
+  - Unit tests [ ]
+  - E2E tests [x] (Cypress test)
+  - Graceful error handling (Error boundary with message) [x]
+- Other features:
+  - Multiple boards [x]
+  - i18n [ ]
+  - More fields [ ]
+- PWA:
+  - Install button [x]
+  - Persistted data to local storage [x]
+  - Push notification after creating card [ ]
+- Performance:
+  - Windowing using react-window for cards in column [x]
+  - Code splitting [x] (lazy loading react-router pages)
+- Design
+  - RWD (not perfect but works looks okay on small devices) [x]
+  - Show description when list is empty [x] (when boards list is empty)
+  - 404 page [x]
+- UX
+  - Auto focus on initial state [x] (auto focus input when adding new items via dialogs)
+  - Input validation (when adding new items name is required/validated) [x]
 
 Board data is stored in individual local storage entries. Cards in column are shown within a virtual list (react-window).
 
