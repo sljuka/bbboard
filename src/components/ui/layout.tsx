@@ -12,6 +12,8 @@ export const Layout = ({ children }: Props) => (
 
     <hr />
 
-    <Outlet />
+    <div className="overflow-auto">
+      <Outlet />
+    </div>
   </div>
 );
