@@ -29,6 +29,22 @@ export default defineConfig({
             type: "image/png",
           },
         ],
+        screenshots: [
+          {
+            src: "screenshot1.png",
+            sizes: "640x320",
+            type: "image/png",
+            form_factor: "wide",
+            label: "Wonder Widgets",
+          },
+          {
+            src: "screenshot1.png",
+            sizes: "640x320",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "Wonder Widgets",
+          },
+        ],
       },
     }),
   ],
